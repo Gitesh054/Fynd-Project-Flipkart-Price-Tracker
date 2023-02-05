@@ -5,7 +5,8 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Gitesh123@127.0.0.1:3306/temp'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Gitesh123@127.0.0.1:3306/temp'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pricetracker.db'
     app.secret_key = "super secret key"
     db.init_app(app)
     from views import view
