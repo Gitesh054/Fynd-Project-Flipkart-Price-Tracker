@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flipkart Price tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+   <body>
+
+      <div class="container" style="width:420px; margin:0 auto; padding-bottom: 17px; padding-top: 20px;">
+        <h3>Paste a Flipkart Link to track</h3>
+      </div>
+
+      <div class="container col-sm-5">
+         <form action="/show.html" method="post">
+             <input class = "form-control" type="text" name="url" required>
+             <div class = "container" style = "padding-top: 8px; padding-left: 250px;">
+                  <input class = "btn btn-primary btn-sm" type="submit" style="width:80px;">
+             </div>
+      </form>
+      </div>
+
+      <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+          Go to Flipkart.com -->
+        <a href="https://www.flipkart.com/" target="_blank">
+            <button class="btn btn-primary btn-sm" style="width:80px;">
+                Flipkart
+            </button>
+        </a>
+      </div>
+
+      <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+          Click this button to update the list -->
+        <a href="/update">
+            <button class="btn btn-primary btn-sm" style="width:80px;">
+                Update
+            </button>
+        </a>
+      </div>
+
+      {%- for message in get_flashed_messages() %}
+         <div class ="alert alert-success alter-dismissable fade show" role="alert">
+             {{ message }}
+         </div>
+      {% endfor %}
+
+      <div class="container my-4">
+          <h3> Products </h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sno.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for product in products%}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td>{{product.name}}</td>
+                      <td>{{product.price}}</td>
+                      <td><a href={{product.url}} target="_blank">Buy</a></td>
+                      <td><a href=/remove/{{product.id}}>Remove</a></td>
+                      <td>{{product.date}}</td>
+                      <td>{{product.time}}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   </body>
+</html>
