@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def track(url):
@@ -12,7 +12,8 @@ def track(url):
 
     price_div = soup.find(name = "div", class_="_30jeq3 _16Jk6d")
     name_div = soup.find(name = "span", class_ = "B_NuCI")
-    now = datetime.now()
+    now = datetime.utcnow() + timedelta(hours=5, minutes=30)
+#     now = datetime.now()
     time = now.strftime("%H:%M:%S")
     date = now.date()
     price = price_div.getText()
